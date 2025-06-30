@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  smooth_corner:
+  auto_smooth_corners:
     path: ../
 
   # The following adds the Cupertino Icons font to your application.

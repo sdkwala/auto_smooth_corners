@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smooth_corner/smooth_corner.dart';
+import 'package:auto_smooth_corners/auto_smooth_corners.dart';
 import 'dart:math';
 
 void main() => runApp(const SmoothDemoApp());

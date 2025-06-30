@@ -1,115 +1,143 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Smooth Corner SDK
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages). 
+[![pub package](https://img.shields.io/pub/v/smooth_corner_sdk.svg)](https://pub.dev/packages/smooth_corner_sdk)
+[![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
+[![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://pub.dev/packages/effective_dart)
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages). 
--->
+A Flutter package for creating beautiful, customizable smooth corners (iOS-style squircle) with full control over corner styling and animations.
 
-# auto_smooth_corners
+## Features ✨
 
-A Flutter package for highly customizable, dynamic smooth corners (iOS-style squircle) with per-corner control.
+- 🎨 **Highly Customizable** - Control every aspect of corner styling
+- ⚡ **Performance Optimized** - Built with Flutter's custom painters for smooth animations
+- 📱 **Responsive** - Smooth corners that scale beautifully across different screen sizes
+- 🎯 **Precision Control** - Adjust corner radius and smoothing factor independently
+- 🎭 **Multiple Widgets** - Includes ready-to-use widgets like `SmoothContainer` and `SmoothCard`
+- 🎨 **Theming Support** - Easily integrate with your app's theme
 
-## Features
-- Dynamic smoothing: `smoothingFactor` scales with widget size
-- Per-corner smoothing: `AutoSmoothBorderRadius.only(...)`
-- Drop-in widgets: `AutoSmoothContainer`, `AutoSmoothClipRRect`, `AutoSmoothCard`
+## 📦 Installation
 
-## Getting started
+Add the following to your `pubspec.yaml` file:
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-Add to your `pubspec.yaml`:
 ```yaml
 dependencies:
-  auto_smooth_corners:
-    path: ./
+  smooth_corner_sdk: ^1.0.0
 ```
 
-Import in your Dart code:
-```dart
-import 'package:auto_smooth_corners/auto_smooth_corners.dart';
+Then run:
+
+```bash
+flutter pub get
 ```
 
-### Example: Minimal Flutter App
+## 🚀 Quick Start
+
+Import the package:
+
 ```dart
-import 'package:flutter/material.dart';
-import 'package:auto_smooth_corners/auto_smooth_corners.dart';
+import 'package:smooth_corner_sdk/smooth_corner_sdk.dart';
+```
 
-void main() => runApp(const MyApp());
+### Basic Usage
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+```dart
+SmoothContainer(
+  width: 200,
+  height: 200,
+  color: Colors.blue,
+  borderRadius: BorderRadius.circular(20),
+  smoothFactor: 0.8, // Adjust smoothness (0.0 to 1.0)
+  child: const Center(
+    child: Text('Smooth Corners!', style: TextStyle(color: Colors.white)),
+  ),
+)
+```
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.grey[200],
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // AutoSmoothContainer with global smoothing
-              AutoSmoothContainer(
-                width: 120,
-                height: 60,
-                color: Colors.blue,
-                smoothingFactor: 0.25, // 25% of min(width, height)
-                child: const Center(child: Text('Smooth Container', style: TextStyle(color: Colors.white))),
-              ),
-              const SizedBox(height: 24),
-              // AutoSmoothContainer with per-corner smoothing
-              AutoSmoothContainer(
-                width: 120,
-                height: 60,
-                color: Colors.green,
-                autoSmoothBorderRadius: AutoSmoothBorderRadius.only(
-                  topLeft: 0.5, // 50% smoothing on topLeft
-                  bottomRight: 0.1, // 10% on bottomRight
-                ),
-                child: const Center(child: Text('Per-corner', style: TextStyle(color: Colors.white))),
-              ),
-              const SizedBox(height: 24),
-              // AutoSmoothClipRRect
-              AutoSmoothClipRRect(
-                smoothingFactor: 0.3,
-                child: Image.network(
-                  'https://placekitten.com/200/200',
-                  width: 100,
-                  height: 100,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              const SizedBox(height: 24),
-              // AutoSmoothCard
-              AutoSmoothCard(
-                color: Colors.white,
-                elevation: 4,
-                smoothingFactor: 0.2,
-                child: const SizedBox(
-                  width: 120,
-                  height: 60,
-                  child: Center(child: Text('Smooth Card')),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+## 🎨 Customization
 
-## API Reference
+### Smoothness Control
+
+```dart
+SmoothContainer(
+  // ...
+  smoothFactor: 0.8, // 0.0 = sharp corners, 1.0 = maximum smoothness
+)
+```
+
+### Per-Corner Smoothing
+
+```dart
+SmoothContainer(
+  // ...
+  borderRadius: BorderRadius.only(
+    topLeft: Radius.circular(20),
+    bottomRight: Radius.circular(40),
+  ),
+  smoothFactor: 0.7,
+)
+```
+
+### Animations
+
+```dart
+AnimatedSmoothContainer(
+  duration: const Duration(milliseconds: 300),
+  width: _isExpanded ? 200 : 100,
+  height: _isExpanded ? 200 : 100,
+  color: Colors.blue,
+  borderRadius: BorderRadius.circular(20),
+  smoothFactor: _isExpanded ? 0.9 : 0.5,
+)
+```
+
+## 📚 Widgets
+
+### SmoothContainer
+
+A container with smooth corners that extends `Container` with additional smooth corner properties.
+
+### SmoothCard
+
+A card widget with smooth corners that extends `Card`.
+
+### SmoothClipRRect
+
+A clip widget with smooth corners that extends `ClipRRect`.
+
+## 🛠️ Advanced Usage
+
+### Custom Painter
+
+For custom implementations, use `SmoothCornerPainter`:
+
+```dart
+CustomPaint(
+  painter: SmoothCornerPainter(
+    color: Colors.blue,
+    borderRadius: BorderRadius.circular(20),
+    smoothFactor: 0.8,
+  ),
+  child: const Center(child: Text('Custom Painter')),
+)
+```
+
+## 📱 Example App
+
+Check out the `example` directory for a complete example app demonstrating various use cases.
+
+## 🔧 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📬 Get in Touch
+
+Have questions or suggestions? Feel free to [open an issue](https://github.com/zahir-patel/auto_smooth_corners/issues)!
+
+## 📚 API Reference
 - `AutoSmoothContainer`: Like `Container`, but with smooth corners
 - `AutoSmoothClipRRect`: Like `ClipRRect`, but with smooth corners
 - `AutoSmoothCard`: Like `Card`, but with smooth corners

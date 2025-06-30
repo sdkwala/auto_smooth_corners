@@ -1,7 +1,12 @@
-/// Support for doing something awesome.
+/// A Flutter package for creating smooth, customizable corners in your UI with support for various corner styles and animations.
 ///
-/// More dartdocs go here.
-library;
+/// This package provides several widgets that can be used to create smooth corners:
+/// - [AutoSmoothContainer]: A container with smooth corners
+/// - [AutoSmoothCard]: A card with smooth corners
+/// - [AutoSmoothClipRRect]: A clip rectangle with smooth corners
+/// - [AutoSmoothBorderRadius]: A border radius with smooth corners
+/// - [AutoSmoothRectangleBorder]: A rectangle border with smooth corners
+library smooth_corner_sdk;
 
 export 'src/smooth_corner_base.dart';
 export 'src/auto_smooth_border_radius.dart';
