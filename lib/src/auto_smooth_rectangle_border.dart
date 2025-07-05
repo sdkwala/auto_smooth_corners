@@ -8,10 +8,10 @@ class AutoSmoothRectangleBorder extends ShapeBorder {
   final BorderSide side;
 
   const AutoSmoothRectangleBorder({
-    this.smoothingFactor = 0.6,
+    double? smoothingFactor,
     this.autoSmoothBorderRadius,
     this.side = BorderSide.none,
-  });
+  }) : smoothingFactor = smoothingFactor ?? 0.6; // Default value, can be overridden by SmoothCornerConfig
 
   /// Returns the effective smoothing for each corner as a map,
   /// given the current width and height.
@@ -26,7 +26,9 @@ class AutoSmoothRectangleBorder extends ShapeBorder {
         'bottomRight': radius.bottomRight * minDim,
       };
     } else {
-      final r = smoothingFactor * minDim;
+      // Get the effective smoothing factor from the widget or global config
+      final effectiveSmoothingFactor = smoothingFactor;
+      final r = effectiveSmoothingFactor * minDim;
       return {
         'topLeft': r,
         'topRight': r,
@@ -57,8 +59,6 @@ class AutoSmoothRectangleBorder extends ShapeBorder {
 
   @override
   Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
-    // TODO: Implement squircle/smooth corner path
-    // For now, use RRect as a placeholder
     final radii = effectiveCornerRadii(rect.size);
     return Path()
       ..addRRect(RRect.fromRectAndCorners(

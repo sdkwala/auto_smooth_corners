@@ -6,6 +6,8 @@
 /// - [AutoSmoothClipRRect]: A clip rectangle with smooth corners
 /// - [AutoSmoothBorderRadius]: A border radius with smooth corners
 /// - [AutoSmoothRectangleBorder]: A rectangle border with smooth corners
+/// - [SmoothCornerProvider]: A widget to provide global smooth corner configuration
+/// - [SmoothCornerConfig]: Configuration class for global smooth corner settings
 library smooth_corner_sdk;
 
 export 'src/smooth_corner_base.dart';
@@ -14,5 +16,7 @@ export 'src/auto_smooth_rectangle_border.dart';
 export 'src/auto_smooth_container.dart';
 export 'src/auto_smooth_clip_rrect.dart';
 export 'src/auto_smooth_card.dart';
+export 'src/smooth_corner_config.dart';
 
-// TODO: Export any libraries intended for clients of this package.
+// Additional exports for global configuration
+export 'src/smooth_corner_config.dart' show SmoothCornerProvider, SmoothCornerConfig;
