@@ -1,6 +1,6 @@
 name: auto_smooth_corners
 description: A Flutter package for creating smooth, customizable corners in your UI with support for various corner styles and animations.
-version: 1.1.0
+version: 1.1.1
 repository: https://github.com/sdkwala/auto_smooth_corners
 homepage: https://github.com/sdkwala/auto_smooth_corners#readme
 documentation: https://github.com/sdkwala/auto_smooth_corners#readme
