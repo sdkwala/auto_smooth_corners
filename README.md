@@ -102,3 +102,6 @@ AutoSmoothContainer(
 ## License
 MIT
 
+## Author
+**sdkwala.com**
+
